@@ -4,16 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
     <title>Game Board</title>
   </head>
   <body>
     <header>
       <h1>Snake Game</h1>
-      <div class="score">
-        <h2>Score: <span id="score">0</span></h2>
-      </div>
     </header>
+    <div class="score">
+      <h2>High Score : <br /><br /><br /><span id="high-score">0</span></h2>
+      <h2>Score: <br /><br /><br /><span id="score">0</span></h2>
+    </div>
     <div id="game_board" class="grid-container"></div>
+
+    <div id="game-over-modal" class="modal">
+      <div class="modal-content">
+        <h2>Game Over!</h2>
+        <p>Your Score: <span id="final-score">0</span></p>
+        <button id="restart-button">Restart</button>
+      </div>
+    </div>
     <script src="app.js"></script>
     <script src="snake.js"></script>
     <script src="food.js"></script>

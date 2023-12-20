@@ -1,3 +1,18 @@
+// drawing the board
+const game_board = document.getElementById('game_board');
+let boardSize = 20;
+
+let drawBoard = () => {
+  for (let i = 0; i < boardSize; i++) {
+    for (let j = 0; j < boardSize; j++) {
+      let cell = document.createElement('div');
+      cell.className = 'grid-item';
+      game_board.appendChild(cell);
+    }
+  }
+};
+drawBoard();
+
 // initial snake position
 let snake = [{ x: 10, y: 10 }];
 
@@ -42,7 +57,9 @@ function moveSnake1Space(xChange, yChange) {
     newHead.x > boardSize ||
     newHead.y < 0 ||
     newHead.y > boardSize - 1 ||
-    snake.includes(newHead)
+    snake
+      .slice(1)
+      .some((segment) => segment.x === newHead.x && segment.y === newHead.y)
   ) {
     gameOver();
     return;
@@ -69,6 +86,7 @@ let xChange = 0;
 let yChange = 0;
 
 let moveSnakeInt = () => {
+  moveSnake1Space(xChange, yChange);
   id = setInterval(() => {
     moveSnake1Space(xChange, yChange);
   }, 500);
@@ -149,12 +167,15 @@ let gameOver = () => {
   modal.style.display = 'flex';
 };
 
+// restart button design
 document
   .getElementById('restart-button')
   .addEventListener('click', function () {
     reset();
     document.getElementById('game-over-modal').style.display = 'none';
   });
+
+// reset function
 
 let reset = () => {
   clearInterval(id);

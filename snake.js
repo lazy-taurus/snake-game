@@ -19,7 +19,8 @@ let snake = [{ x: 10, y: 10 }];
 // score
 
 let score = 0;
-let highScore = 0;
+let highScore = localStorage.getItem('highScore') || 0;
+document.getElementById('high-score').innerHTML = highScore;
 
 // makes the snake at given array of positions
 
@@ -153,7 +154,9 @@ let eraseFood = () => {
 let setHighScore = () => {
   if (score > highScore) {
     highScore = score;
-    document.getElementById('high-score').innerHTML = highScore;
+    localStorage.setItem('highScore', highScore);
+    document.getElementById('high-score').innerHTML =
+      localStorage.getItem('highScore');
   }
 };
 
